@@ -1,0 +1,10 @@
+.flex-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.verb-information,
+.button-div {
+	text-align: center;
+	margin: 15px;
+}
