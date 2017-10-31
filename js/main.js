@@ -14,7 +14,8 @@ var App = {
 		form_3s: "el/ella/usted",
 		form_1p: "nosotros",
 		form_2p: "vosotros",
-		form_3p: "gerund",
+		form_3p: "ellos/ellas/ustedes",
+		gerund: "gerund",
 		pastparticiple: "past participle"
 	},
 	
