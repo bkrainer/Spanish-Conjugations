@@ -8,3 +8,13 @@
 	text-align: center;
 	margin: 15px;
 }
+
+.current-verb {
+	border: solid #f7f7f9;
+	border-width: 0.2rem;
+	margin-bottom: 5px;
+}
+
+.verb-table {
+	margin-top: 15px;
+}
