@@ -18,3 +18,8 @@
 .verb-table {
 	margin-top: 15px;
 }
+
+input.form-control.verb-input {
+	width: 50%;
+	margin: auto;
+}
