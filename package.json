@@ -1,0 +1,28 @@
+{
+  "name": "spanish-conjugations",
+  "version": "1.0.0",
+  "description": "Tool to practice spanish verb conjugation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkrainer/Spanish-Conjugations.git"
+  },
+  "keywords": [
+    "spanish",
+    "language",
+    "verb",
+    "conjugation"
+  ],
+  "author": "Brian Krainer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bkrainer/Spanish-Conjugations/issues"
+  },
+  "homepage": "https://github.com/bkrainer/Spanish-Conjugations#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

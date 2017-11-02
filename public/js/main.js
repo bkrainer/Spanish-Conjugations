@@ -25,7 +25,7 @@ var App = {
 	initialize: function() {
 		$.ajax({
 			type: "GET",
-			url: "data/verbs.csv",
+			url: "/data/verbs.csv",
 			dataType: "text",
 			success: function(data) {
 				App.verbs = $.csv.toObjects(data);
