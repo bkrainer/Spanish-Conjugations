@@ -1,18 +1,7 @@
-.flex-container {
-	display: flex;
-	flex-direction: column;
-}
-
 .verb-information,
 .button-div {
 	text-align: center;
 	margin: 15px;
-}
-
-.current-verb {
-	border: solid #f7f7f9;
-	border-width: 0.2rem;
-	margin-bottom: 5px;
 }
 
 .verb-table {
