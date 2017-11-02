@@ -76,8 +76,6 @@ var App = {
 			var $row = $('<tr></tr>');
 			$row.append('<td>' + App.pronounMap[key] + '</td>');
 			
-			console.log(JSON.stringify(verb));
-			console.log(JSON.stringify(verb[key]));
 			var answer = '"' + verb[key] + '"';
 			var input = '<input type="text" class="form-control verb-input" placeholder=' + answer + '>';
 			$row.append('<td>' + input + '</td>');
