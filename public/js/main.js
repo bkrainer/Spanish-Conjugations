@@ -1,3 +1,15 @@
+/* Class for representing the current verb being displayed.
+ * Stores the verb tenses, and handles conjugation validation
+ */
+function Verb(verbData) {
+	this.forms = verbData;
+	this.validateConjugation = function(form, input) {
+		var correct = this.forms[form];
+		return correct == input;
+	};
+};
+
+
 var App = {
 	/* data structure used to store and lookup verbs. Currently, just an array
 	 * of verb objects. The verb attributes match the column headers in data/verbs.js
@@ -45,11 +57,11 @@ var App = {
 	 * Also sets the currentVerb parameter.
 	 */
 	getNextVerb: function() {
-		var verb = _.sample(App.verbs);
+		var verbData = _.sample(App.verbs);
 
-		App.currentVerb = verb;
+		App.currentVerb = new Verb(verbData);
 
-		return verb;
+		return App.currentVerb;
 	},
 
 	/* Takes in a verb object, and handles the logic for displaying this verb.
@@ -58,11 +70,12 @@ var App = {
 	 * paired with the appropriate conjugations.
 	 */
 	displayVerb: function(verb) {
-		$("#infinitive-form").text(verb.infinitive);
-		$("#definition").text(verb.infinitive_english);
+		var forms = verb.forms;
+		$("#infinitive-form").text(forms.infinitive);
+		$("#definition").text(forms.infinitive_english);
 
 		/* We want to display the mood and the tense that we are currently showing */
-		$('#table-header').text(verb.mood_english + ' ' + verb.tense_english);
+		$('#table-header').text(forms.mood_english + ' ' + forms.tense_english);
 
 		/* Clear the current verb table so we don't keep appending information each time
 		 * a new verb is loaded
@@ -76,11 +89,34 @@ var App = {
 			var $row = $('<tr></tr>');
 			$row.append('<td>' + App.pronounMap[key] + '</td>');
 			
-			var answer = '"' + verb[key] + '"';
-			var input = '<input type="text" class="form-control verb-input" placeholder=' + answer + '>';
-			$row.append('<td>' + input + '</td>');
+			var $input = $('<input type="text" class="form-control verb-input">');
+			$input.data('form', key);
+			var $td = $('<td></td>').append($input);
+			$row.append($td);
 			$("#verb-table-body").append($row);
+
+			/* Attach listeners to the input field so the user's input
+			 * can be validated
+			 */
+			$input.change(App.inputListener);
 		});
+	},
+
+	/* Attaches listeners to the input fields in the verb table.
+	 * When a change event is fired, the input will compare the user's input
+	 * with the correct answer and update the view accordingly
+	 */
+	inputListener: function() {
+		var response = $(this).val();
+		var answer = App.currentVerb.forms[$(this).data('form')];
+		var inputForm = $(this).data('form');
+		var isCorrect = App.currentVerb.validateConjugation(inputForm, response);
+		if (isCorrect) {
+			$(this).addClass('is-valid').removeClass('is-invalid');
+		}
+		else {
+			$(this).addClass('is-invalid').removeClass('is-valid');
+		}
 	},
 
 	/* Handles the clicking of the 'Next' button. Calls getNextVerb and displayVerb. */
