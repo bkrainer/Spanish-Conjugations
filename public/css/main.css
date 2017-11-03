@@ -9,6 +9,12 @@
 }
 
 input.form-control.verb-input {
-	width: 50%;
+	width: 75%;
 	margin: auto;
+}
+
+@media (max-width: 480px) {
+	input.form-control.verb-input {
+		width: unset;
+	}
 }
