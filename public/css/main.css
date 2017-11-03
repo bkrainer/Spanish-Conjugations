@@ -1,11 +1,11 @@
-.verb-information,
-.button-div {
+.verb-table {
 	text-align: center;
-	margin: 15px;
+	margin-top: 15px;
 }
 
-.verb-table {
-	margin-top: 15px;
+.verb-header {
+	background-color: #d3d3d3;
+	text-align: center;
 }
 
 input.form-control.verb-input {
