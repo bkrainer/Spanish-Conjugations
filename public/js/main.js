@@ -25,7 +25,9 @@ var App = {
 		form_2s: "tu",
 		form_3s: "el/ella/usted",
 		form_1p: "nosotros",
-		form_2p: "vosotros",
+		/* Remove vosotros for now, but will add option in the future that
+		 * let's the user specify settings */
+		//form_2p: "vosotros",
 		form_3p: "ellos/ellas/ustedes",
 		gerund: "gerund",
 		pastparticiple: "past participle"
