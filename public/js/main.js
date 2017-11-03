@@ -25,10 +25,10 @@ var App = {
 	initialize: function() {
 		$.ajax({
 			type: "GET",
-			url: "/data/verbs.csv",
-			dataType: "text",
+			url: "/verbs",
+			dataType: "json",
 			success: function(data) {
-				App.verbs = $.csv.toObjects(data);
+				App.verbs = data;
 
 				/* Randomly select the first verb to display */
 				App.next();			
