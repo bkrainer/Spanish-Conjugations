@@ -131,14 +131,22 @@ var App = {
 			
 			var $input = $('<input type="text" class="form-control verb-input">');
 			$input.data('form', key);
+
 			var $td = $('<td></td>').append($input);
 			$row.append($td);
+
+			var $checkbox = $('<td><input type="checkbox" class="form-check-input"></td');
+			$row.append($checkbox);
+
 			$("#verb-table-body").append($row);
 
 			/* Attach listeners to the input field so the user's input
 			 * can be validated
 			 */
 			$input.change(App.inputListener);
+
+			/* Attach listener to checkboxes to reveal correct answer when clicked */
+			$checkbox.change(App.checkboxListener);
 		});
 	},
 
@@ -150,6 +158,16 @@ var App = {
 		var response = $(this).val();
 		var answer = App.currentVerb.forms[$(this).data('form')];
 		var inputForm = $(this).data('form');
+
+		/* If the response is empty (e.g. the 'show' checkbox is unchecked, and the
+		 * correct answer is hidden), then don't show the valid or invalid styling.
+		 * Simply show the input box as if nothing happened.
+		 */
+		if (response == '') {
+			$(this).removeClass('is-valid is-invalid');
+			return;
+		}
+
 		var isCorrect = App.currentVerb.validateConjugation(inputForm, response);
 		if (isCorrect) {
 			$(this).addClass('is-valid').removeClass('is-invalid');
@@ -162,6 +180,33 @@ var App = {
 		else {
 			$(this).addClass('is-invalid').removeClass('is-valid');
 		}
+	},
+
+	/* Attaches listeners to the checkbox field in the table row.
+	 * When checked, the listener will display the correct answer
+	 * for that row.
+	 */
+	checkboxListener: function() {
+		var $row = $(this).closest('tr');
+		var $input = $row.find('.verb-input');
+
+		var form = $input.data('form');
+		var answer = App.currentVerb.forms[form];
+
+		/* bootstrap 4 doesn't appear to toggle the 'checked' property,
+		 * so do it manually
+		 */
+		$(this).prop('checked', !$(this).prop('checked'));
+		var checked = $(this).prop('checked');
+
+		if (checked) {
+			$input.val(answer);
+		}
+		else {
+			$input.val('');
+		}
+
+		$input.trigger('change');
 	},
 
 	/* Handles the clicking of the 'Next' button. Calls getNextVerb and displayVerb. */
