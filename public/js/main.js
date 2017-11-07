@@ -30,7 +30,8 @@ function Verb(verbData) {
 		"í": "i",
 		"ó": "o",
 		"ú": "u",
-		"ü": "u"
+		"ü": "u",
+		"ñ": "n"
 	},
 
 	/* Given a string s, replaces any accented chars with it's ascii
@@ -152,6 +153,11 @@ var App = {
 		var isCorrect = App.currentVerb.validateConjugation(inputForm, response);
 		if (isCorrect) {
 			$(this).addClass('is-valid').removeClass('is-invalid');
+			/* Since we're not being strict about accents, once the
+			 * response is validated, fill the input box with the text
+			 * of the true answer (including the accents)
+			 */
+			$(this).val(answer);
 		}
 		else {
 			$(this).addClass('is-invalid').removeClass('is-valid');
