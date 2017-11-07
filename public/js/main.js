@@ -135,8 +135,9 @@ var App = {
 			var $td = $('<td></td>').append($input);
 			$row.append($td);
 
-			var $checkbox = $('<td><input type="checkbox" class="form-check-input"></td');
-			$row.append($checkbox);
+			var $showLink = $('<button type="button" class="btn btn-link">show</button>');
+			var $linkRow = $('<td></td>').append($showLink);
+			$row.append($linkRow);
 
 			$("#verb-table-body").append($row);
 
@@ -145,8 +146,8 @@ var App = {
 			 */
 			$input.change(App.inputListener);
 
-			/* Attach listener to checkboxes to reveal correct answer when clicked */
-			$checkbox.change(App.checkboxListener);
+			/* Attach listener to the 'show' link to reveal correct answer when clicked */
+			$showLink.click(App.showListener);
 		});
 	},
 
@@ -159,7 +160,7 @@ var App = {
 		var answer = App.currentVerb.forms[$(this).data('form')];
 		var inputForm = $(this).data('form');
 
-		/* If the response is empty (e.g. the 'show' checkbox is unchecked, and the
+		/* If the response is empty (e.g. the 'hide' link was clicked, and the
 		 * correct answer is hidden), then don't show the valid or invalid styling.
 		 * Simply show the input box as if nothing happened.
 		 */
@@ -182,28 +183,27 @@ var App = {
 		}
 	},
 
-	/* Attaches listeners to the checkbox field in the table row.
-	 * When checked, the listener will display the correct answer
+	/* Attaches listeners to the 'show' link in the table row.
+	 * When clicked, the listener will display the correct answer
 	 * for that row.
 	 */
-	checkboxListener: function() {
+	showListener: function() {
 		var $row = $(this).closest('tr');
 		var $input = $row.find('.verb-input');
 
 		var form = $input.data('form');
 		var answer = App.currentVerb.forms[form];
 
-		/* bootstrap 4 doesn't appear to toggle the 'checked' property,
-		 * so do it manually
-		 */
-		$(this).prop('checked', !$(this).prop('checked'));
-		var checked = $(this).prop('checked');
+		$(this).prop('show', !$(this).prop('show'));
+		var show = $(this).prop('show');
 
-		if (checked) {
+		if (show) {
 			$input.val(answer);
+			$(this).text('hide');
 		}
 		else {
 			$input.val('');
+			$(this).text('show');
 		}
 
 		$input.trigger('change');
