@@ -5,8 +5,45 @@ function Verb(verbData) {
 	this.forms = verbData;
 	this.validateConjugation = function(form, input) {
 		var correct = this.forms[form];
-		return correct == input;
+
+		/* Allow some flexibility with the user's responses */
+
+		/* ignore leading/trailing whitespace from input */
+		var check = input.trim();
+
+		/* ignore casing */
+		check = check.toLowerCase();
+
+		/* ignore accents */
+		check = this._replaceAccent(check);
+		correct = this._replaceAccent(correct);
+
+		return correct == check;
 	};
+
+	/* Hash mapping accented chars to their unaccented counterparts.
+	 * Used to make input validation more lenient
+	 */
+	this._accentMap = {
+		"á":"a",
+		"é": "e",
+		"í": "i",
+		"ó": "o",
+		"ú": "u",
+		"ü": "u"
+	},
+
+	/* Given a string s, replaces any accented chars with it's ascii
+	 * couterpart (using this._accentMap, defined above)
+	 */
+	this._replaceAccent = function(s) {
+		var map = this._accentMap;
+		var replaced = s.replace(/[^A-Za-z\s]/g, function(c) {
+			return map[c] || c;
+		});
+
+		return replaced;
+	}
 };
 
 
