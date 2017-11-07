@@ -126,17 +126,17 @@ var App = {
 		 * and create a table row. Then append this row to the verb table
 		 */
 		_.each(_.keys(App.pronounMap), function(key) {
-			var $row = $('<tr></tr>');
-			$row.append('<td>' + App.pronounMap[key] + '</td>');
+			var $row = $('<tr class="row"></tr>');
+			$row.append('<td class="col-2">' + App.pronounMap[key] + '</td>');
 			
 			var $input = $('<input type="text" class="form-control verb-input">');
 			$input.data('form', key);
 
-			var $td = $('<td></td>').append($input);
+			var $td = $('<td class="col-8"</td>').append($input);
 			$row.append($td);
 
 			var $showLink = $('<button type="button" class="btn btn-link">show</button>');
-			var $linkRow = $('<td></td>').append($showLink);
+			var $linkRow = $('<td class="col-2"></td>').append($showLink);
 			$row.append($linkRow);
 
 			$("#verb-table-body").append($row);

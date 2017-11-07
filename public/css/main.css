@@ -7,3 +7,14 @@
 	background-color: #d3d3d3;
 	text-align: center;
 }
+
+input.form-control.verb-input {
+	width: 50%;
+	margin: auto;
+}
+
+@media (max-width: 480px) {
+	input.form-control.verb-input {
+		width: 100%;
+	}
+}
