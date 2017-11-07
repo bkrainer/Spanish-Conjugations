@@ -16,6 +16,5 @@ input.form-control.verb-input {
 @media (max-width: 480px) {
 	input.form-control.verb-input {
 		width: 100%;
-		min-width: 150px;
 	}
 }
