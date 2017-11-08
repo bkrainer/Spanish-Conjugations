@@ -13,21 +13,3 @@
 	background-color: #d3d3d3;
 	text-align: center;
 }
-
-@media (max-width: 720px) {
-	label.input-label, .show-link {
-		font-size: 14px;
-	}
-}
-
-@media (max-width: 540px) {
-	label.input-label, button.show-link {
-		font-size: 12px;
-	}
-}
-
-@media (max-width: 480px) {
-	label.input-label, button.show-link {
-		font-size: 10px;
-	}
-}
