@@ -61,12 +61,12 @@ var App = {
 	pronounMap: {
 		form_1s: "yo",
 		form_2s: "tu",
-		form_3s: "el/ella/usted",
+		form_3s: "el, ella, usted",
 		form_1p: "nosotros",
 		/* Remove vosotros for now, but will add option in the future that
 		 * let's the user specify settings */
 		//form_2p: "vosotros",
-		form_3p: "ellos/ellas/ustedes",
+		form_3p: "ellos, ellas, ustedes",
 		gerund: "gerund",
 		pastparticiple: "past participle"
 	},
@@ -106,7 +106,7 @@ var App = {
 
 	/* Takes in a verb object, and handles the logic for displaying this verb.
 	 * This includes displaying the infinitive form of the verb, along with its
-	 * english definition. This is followed by a table of the verb's pronouns
+	 * english definition. This is followed by a web form of the verb's pronouns
 	 * paired with the appropriate conjugations.
 	 */
 	displayVerb: function(verb) {
@@ -120,26 +120,36 @@ var App = {
 		/* Clear the current verb table so we don't keep appending information each time
 		 * a new verb is loaded
 		 */
-		$('#verb-table-body').empty();
+		$('#verb-form').empty();
 
 		/* Iterate through the list of pronouns/alternate verb forms,
 		 * and create a table row. Then append this row to the verb table
 		 */
 		_.each(_.keys(App.pronounMap), function(key) {
-			var $row = $('<tr class="row"></tr>');
-			$row.append('<td class="col-2">' + App.pronounMap[key] + '</td>');
-			
+			/* jQuery element for the form row */
+			var $row = $('<div class="form-group row"></div>');
+
+			var $label = $('<label class="col-2 col-form-label input-label">' + App.pronounMap[key] + '</label>');
+			/* jQuery element for the input bar and its wrapper div */
+			var $inputDiv = $('<div class="col-8"></div>');
 			var $input = $('<input type="text" class="form-control verb-input">');
+
+			/* store the key (which is a pronoun form) as a data-attribute, so we can look up
+			 * the correct answer later
+			 */
 			$input.data('form', key);
+			$inputDiv.append($input);
 
-			var $td = $('<td class="col-8"</td>').append($input);
-			$row.append($td);
+			/* link to reveal the correct answer */
+			var $showLink = $('<button type="button" tabindex="-1" class="show-link btn btn-link col-2">show</button>');
 
-			var $showLink = $('<button type="button" class="btn btn-link">show</button>');
-			var $linkRow = $('<td class="col-2"></td>').append($showLink);
-			$row.append($linkRow);
+			/* now append the elements to the form row */
+			$row.append($label);
+			$row.append($inputDiv);
+			$row.append($showLink);
 
-			$("#verb-table-body").append($row);
+			/* append the form row to the form */
+			$('#verb-form').append($row);
 
 			/* Attach listeners to the input field so the user's input
 			 * can be validated
@@ -188,7 +198,7 @@ var App = {
 	 * for that row.
 	 */
 	showListener: function() {
-		var $row = $(this).closest('tr');
+		var $row = $(this).parent();
 		var $input = $row.find('.verb-input');
 
 		var form = $input.data('form');
