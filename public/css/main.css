@@ -14,8 +14,8 @@
 	text-align: center;
 }
 
-@media (max-width: 480px) {
-	label.input-label, button.show-link {
-		font-size: 12px;
-	}
+label.input-label {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }

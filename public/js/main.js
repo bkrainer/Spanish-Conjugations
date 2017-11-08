@@ -132,7 +132,8 @@ var App = {
 			var $label = $('<label class="col-2 col-form-label input-label">' + App.pronounMap[key] + '</label>');
 			/* jQuery element for the input bar and its wrapper div */
 			var $inputDiv = $('<div class="col-8"></div>');
-			var $input = $('<input type="text" class="form-control verb-input">');
+			var $input = $('<input type="text" class="form-control verb-input"'
+				+ 'placeholder=' + '"' + App.pronounMap[key] + '"' + '>');
 
 			/* store the key (which is a pronoun form) as a data-attribute, so we can look up
 			 * the correct answer later
