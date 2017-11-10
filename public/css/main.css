@@ -5,17 +5,11 @@
 	margin-right: auto;
 }
 
-.input-label {
-	text-align: right;
-}
-
 .verb-header {
 	background-color: #d3d3d3;
 	text-align: center;
 }
 
-label.input-label {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+label.col-form-label {
+	text-align: center;
 }

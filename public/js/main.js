@@ -61,14 +61,14 @@ var App = {
 	pronounMap: {
 		form_1s: "yo",
 		form_2s: "tu",
-		form_3s: "el, ella, usted",
+		form_3s: "el, ella, ud.",
 		form_1p: "nosotros",
 		/* Remove vosotros for now, but will add option in the future that
 		 * let's the user specify settings */
 		//form_2p: "vosotros",
-		form_3p: "ellos, ellas, ustedes",
+		form_3p: "ellos, ellas, uds.",
 		gerund: "gerund",
-		pastparticiple: "past participle"
+		pastparticiple: "past part."
 	},
 	
 	/* Function to be run on page load. Parses the verb data from the
@@ -129,11 +129,12 @@ var App = {
 			/* jQuery element for the form row */
 			var $row = $('<div class="form-group row"></div>');
 
-			var $label = $('<label class="col-2 col-form-label input-label">' + App.pronounMap[key] + '</label>');
+			var labelFor = 'input-' + key;
+			var $label = $('<label for="' + labelFor + '"' + 'class="col-sm-2 col-form-label">' + App.pronounMap[key] + '</label>');
+
 			/* jQuery element for the input bar and its wrapper div */
-			var $inputDiv = $('<div class="col-8"></div>');
-			var $input = $('<input type="text" class="form-control verb-input"'
-				+ 'placeholder=' + '"' + App.pronounMap[key] + '"' + '>');
+			var $inputDiv = $('<div class="col-sm-9"></div>');
+			var $input = $('<input type="text" class="form-control verb-input" id="' + labelFor + '">');
 
 			/* store the key (which is a pronoun form) as a data-attribute, so we can look up
 			 * the correct answer later
@@ -142,7 +143,7 @@ var App = {
 			$inputDiv.append($input);
 
 			/* link to reveal the correct answer */
-			var $showLink = $('<button type="button" tabindex="-1" class="show-link btn btn-link col-2">show</button>');
+			var $showLink = $('<button type="button" tabindex="-1" class="col-sm-1 show-link btn btn-link">show</button>');
 
 			/* now append the elements to the form row */
 			$row.append($label);
