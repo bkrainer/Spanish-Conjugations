@@ -1,10 +1,13 @@
 {
   "name": "spanish-conjugations",
+  "private": true,
   "version": "1.0.0",
   "description": "Tool to practice spanish verb conjugation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,9 @@
     "url": "https://github.com/bkrainer/Spanish-Conjugations/issues"
   },
   "homepage": "https://github.com/bkrainer/Spanish-Conjugations#readme",
+  "devDependencies": {
+    "bower": "^1.7.7"
+  },
   "dependencies": {
     "express": "^4.16.2"
   }

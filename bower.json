@@ -1,0 +1,15 @@
+{
+	"name": "spanish-conjugations",
+	"description": "A tool for practicing Spanish verb conjugations",
+	"version": "1.0.0",
+	"homepage": "https://github.com/bkrainer/Spanish-Conjugations",
+	"license": "ISC",
+	"private": true,
+	"dependencies": {
+		"angular": "1.5.x",
+		"angular-mocks": "1.5.x",
+		"angular-resource": "1.5.x",
+		"angular-route": "1.5.x",
+		"underscore": "~1.8.3"
+	}
+}

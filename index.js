@@ -4,14 +4,22 @@ const path = require('path');
 
 app.set('port', (process.env.PORT || 5000));
 
-app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + '/public'));
+app.set('app', __dirname + '/app');
+var appDir = app.get('app');
 
-var data = require(__dirname + '/public/data/verbs.json');
+app.use(
+	express.static(path.join(appDir, '/public'))
+);
+app.use(
+	'/bower_components',
+	express.static(path.join(appDir, 'bower_components'))
+);
+
+var data = require(appDir + '/public/data/verbs.json');
 
 /* On page load, serve index.html */
 app.get('/', function(request, response) {
-	response.sendFile(app.get('views') + '/pages/index.html');
+	response.sendFile(appDir + '/index.html');
 });
 
 app.get('/verbs', function(request, response) {

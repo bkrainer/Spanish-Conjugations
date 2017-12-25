@@ -1,0 +1,47 @@
+<div class="card sticky-top">
+  <div class="card-block verb-header">
+    <h2>{{$ctrl.verb.infinitive}}</h2>
+    <h3>{{$ctrl.verb.infinitive_english}}</h3>
+    </br>
+    <h5>{{$ctrl.verb.mood_english + ' ' + $ctrl.verb.tense_english}}</h5>
+    <button ng-click="$ctrl.getNextVerb()" class="btn btn-link" type="button">Next</button>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="card verb-form-card col-xs-12 col-lg-10">
+    <div class="card-block">
+
+      <form>
+        <div ng-repeat="(form, pronoun) in $ctrl.pronounMap" class="form-group row">
+          <label class="col-sm-2 col-form-label">{{pronoun}}</label>
+          <div class="col-sm-9">
+            <input
+              ng-disabled="$ctrl.verb[form] == ''"
+              ng-model="$ctrl.responses[form]"
+			  ng-class="{
+                'is-valid': $ctrl.responses[form] && $ctrl.validate(form), 
+			  	'is-invalid': $ctrl.responses[form] && !$ctrl.validate(form)
+              }"
+              type="text"
+              class="form-control verb-input"
+            >
+          </div>
+          <button
+			ng-disabled="$ctrl.verb[form] == ''"
+			ng-click="$ctrl.toggleAnswer(form)"
+            type="button"
+            tabindex="-1"
+            class="col-sm-1 show-link btn btn-link"
+          >
+		  	<span ng-switch="$ctrl.validate(form)">
+		      <p ng-switch-when="true">hide</p>
+			  <p ng-switch-default>show</p>
+		    </span>
+		  </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
