@@ -25,10 +25,8 @@
     "url": "https://github.com/bkrainer/Spanish-Conjugations/issues"
   },
   "homepage": "https://github.com/bkrainer/Spanish-Conjugations#readme",
-  "devDependencies": {
-    "bower": "^1.7.7"
-  },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "bower": "^1.7.7"
   }
 }
