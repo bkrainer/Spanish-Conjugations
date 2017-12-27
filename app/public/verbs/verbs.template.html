@@ -19,26 +19,26 @@
             <input
               ng-disabled="$ctrl.verb[form] == ''"
               ng-model="$ctrl.responses[form]"
-			  ng-class="{
+              ng-class="{
                 'is-valid': $ctrl.responses[form] && $ctrl.validate(form), 
-			  	'is-invalid': $ctrl.responses[form] && !$ctrl.validate(form)
+                'is-invalid': $ctrl.responses[form] && !$ctrl.validate(form)
               }"
               type="text"
               class="form-control verb-input"
             >
           </div>
           <button
-			ng-disabled="$ctrl.verb[form] == ''"
-			ng-click="$ctrl.toggleAnswer(form)"
+            ng-disabled="$ctrl.verb[form] == ''"
+            ng-click="$ctrl.toggleAnswer(form)"
             type="button"
             tabindex="-1"
             class="col-sm-1 show-link btn btn-link"
           >
-		  	<span ng-switch="$ctrl.validate(form)">
-		      <p ng-switch-when="true">hide</p>
-			  <p ng-switch-default>show</p>
-		    </span>
-		  </button>
+            <span ng-switch="$ctrl.validate(form)">
+              <p ng-switch-when="true">hide</p>
+              <p ng-switch-default>show</p>
+            </span>
+          </button>
         </div>
       </form>
 
